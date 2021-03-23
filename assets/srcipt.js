@@ -132,8 +132,7 @@ function getData() {
                 todayTitle.append(weatherIcon)    
                 today.append(todayTitle);
                 
-                Ul = $('<ul id"list">')
-                Ul.css('list-style', 'none') 
+                Ul = $('<div id"list">')
 
                 weatherResult = [
                     temp= 'Temperature: '  + master.temp +' °F', 
@@ -143,7 +142,7 @@ function getData() {
                 ];
                 
                 for (i=0; i < weatherResult.length ; i++) {
-                    li= $('<li>')
+                    li= $('<p>')
                     li.text(weatherResult[i])
                     Ul.append(li)
                     today.append(Ul)
@@ -159,25 +158,22 @@ function getData() {
 
                     eachDay   = $('<div class="each-day">')
                     eachDay.attr ('id',i)
-                    eachDayUl = $('<ul>')
-                    eachDayUl.css('list-style', 'none') 
                     
                     iconCode     = data.list[i].weather[0].icon
                     iconUrl      =   'http://openweathermap.org/img/w/'+iconCode+'.png'
                     weatherIcon  = $('<img id="icon" src="" alt="weather icon">')
                     weatherIcon.attr( 'src' , iconUrl )
 
-                    furTime = $('<li>').text(moment().add(i, 'days').format('MM/ DD/ YYYY'))
-                    furIcon = $('<li>').html(weatherIcon)
-                    furTemp = $('<li>').text('Temp: ' + data.list[i].main.temp + ' °F')
-                    furHumd = $('<li>').text('Humidity: ' + data.list[i].main.humidity + ' %')
+                    furTime = $('<p>').text(moment().add(i, 'days').format('MM/ DD/ YYYY'))
+                    furIcon = $('<p>').html(weatherIcon)
+                    furTemp = $('<p>').text('Temp: ' + data.list[i].main.temp + ' °F')
+                    furHumd = $('<p>').text('Humidity: ' + data.list[i].main.humidity + ' %')
 
-                    eachDayUl.append(furTime)
-                    eachDayUl.append(furIcon)
-                    eachDayUl.append(furTemp)
-                    eachDayUl.append(furHumd)
+                    eachDay.append(furTime)
+                    eachDay.append(furIcon)
+                    eachDay.append(furTemp)
+                    eachDay.append(furHumd)
                     
-                    eachDay.append(eachDayUl)
                     container.append(eachDay)
                 }
 
