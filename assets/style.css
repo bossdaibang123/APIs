@@ -1,0 +1,66 @@
+* { 
+   color: black 
+}
+
+
+.text-header {
+    text-align: center;
+    color: white;   
+    background-color: black;
+    margin-bottom: 0px;
+    padding: 1%;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    line-height: 1.8;
+}
+
+
+#main-div-left {
+    width: 30%;
+    background-color: rgb(210, 215, 216);
+    padding : 1%;
+    
+}
+
+#main-div-left input {
+    width: 60%;
+
+}
+#main-div-right {
+    padding-top: 1.3%;
+    padding-left: 1.3%;
+}
+
+#todayy-weather {
+    height: 230px;
+    width : 800px;
+}
+.show {
+    border: solid 1px rgb(63, 62, 62);
+    border-right: none;
+    padding-left: 5%;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px ;
+}
+
+#container {
+    display: inline-block;
+}
+
+.each-day {
+    paddint-left: 0px;
+    text-align: center;
+    margin : 5px;
+    border: solid 1px #186ff1;
+    border-radius : 6px;
+    background-color: #186ff1;
+    color: white;
+}
+
+#container {
+    display: inline-block;
+}
