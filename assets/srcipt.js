@@ -15,7 +15,7 @@ var mainL  = $('#main-div-left')
     textMD.text('Search for city')
 
     //input search
-    input = $('<input>')
+var input = $('<input>')
     
     //button
     Btn = $('<button class="searchBtn">')
@@ -26,7 +26,7 @@ var mainL  = $('#main-div-left')
     Stt.text('Request Status: Waiting')
 
     // history
-    cityList = $('<ul>')
+    cityList = $('<div>')
 
     
     mainL.append(textMD)
@@ -63,15 +63,16 @@ Btn.on('click', function() {
         return;
     }
     getData();
+
 });
 
 function getData() {
-
+    
     var cityName = 'q=' + input.val()
     var keyAPI   = '22268326ee1d5ca43087f28acd77b745'
     var urlBase  = 'http://api.openweathermap.org/data/2.5/forecast?'
     var urlFinal =  urlBase + cityName +'&appid=' + keyAPI ;
-
+    
     /* for ( i=0; i < APIcall.length; i++ ) {
         listBtn = $('<button>')
         listBtn.text(APIcall[i])
@@ -102,8 +103,7 @@ function getData() {
             }
 
             //city list      
-            console.log(cities)      
-           // clickSearch();
+            clickSearch();
 
             // show result
             console.log(data)
@@ -132,13 +132,15 @@ function getData() {
                 todayTitle.append(weatherIcon)    
                 today.append(todayTitle);
                 
-                Ul = $('<div id"list">')
+                Ul = $('<div id"list">')    
+
+                var tempK = ((master.temp * 9/5) - 459.67).toFixed(1)
 
                 weatherResult = [
-                    temp= 'Temperature: '  + master.temp +' °F', 
+                    temp= 'Temperature: ' + tempK +' °F', 
                     humidity='Humidity: ' + master.humidity + ' %', 
-                    wind=  'Wind Speed: '  + data.list[0].wind.speed + ' MPH', 
-                    UVIndex ='UV Index: '  + dataUv.value
+                    wind=  'Wind Speed: ' + data.list[0].wind.speed + ' MPH', 
+                    UVIndex ='UV Index: ' + dataUv.value
                 ];
                 
                 for (i=0; i < weatherResult.length ; i++) {
@@ -147,6 +149,12 @@ function getData() {
                     Ul.append(li)
                     today.append(Ul)
                 }
+                
+              /*   li= $('<div>')
+                li.innerHtml('<div id="UV">' + weatherResult[3] +'<div>')
+                console.log('djdjdj')
+                Ul.append(li)
+                today.append(Ul) */
                 
                 //done with today div element
                 mainR.append(today);
@@ -166,8 +174,8 @@ function getData() {
 
                     furTime = $('<p>').text(moment().add(i, 'days').format('MM/ DD/ YYYY'))
                     furIcon = $('<p>').html(weatherIcon)
-                    furTemp = $('<p>').text('Temp: ' + data.list[i].main.temp + ' °F')
-                    furHumd = $('<p>').text('Humidity: ' + data.list[i].main.humidity + ' %')
+                    furTemp = $('<p>').text('Temp: '    + ((data.list[i].main.temp  * 9/5) - 459.67).toFixed(0) + ' °F')
+                    furHumd = $('<p>').text('Humidity: '+ data.list[i].main.humidity + ' %')
 
                     eachDay.append(furTime)
                     eachDay.append(furIcon)
@@ -180,74 +188,60 @@ function getData() {
                 furture.append(container)
                 mainR.append(furture);
 
-
             })
-
         }else {
             // sever die, not your fault
             Stt.text('Request Status: Error in the HTTP request')
 
-        }
-    
+        } 
     })
 };
 
-/*
 
 function clickSearch()  {
-
-    console.log(cities)
-    cities.push(input.val());
-    console.log(cities)
+    if(cities.indexOf(input.val()) == -1){
+        //add the value to the array
+        cities.push(input.val());
+    }
 
     rendercities();
     storeCity();
+    input.val('');
 }
-
-
 
 
 function storeCity() {
-    //save search history
     localStorage.setItem("History", JSON.stringify(cities))
-    console.log(cities)           
 }
-
 
 function init() {
     var APIcall = JSON.parse(localStorage.getItem("History"))   ;
     
     if ( APIcall !== null ) {
         cities = APIcall
-        console.log(cities)
     }
-
-
-
-    console.log(typeof cities)
+    
     rendercities();
 }
 
 function rendercities() {
+    //clear the all list
+    cityList.empty()
+    
     // make a list
-    console.log(typeof cities)
-    console.log(cities.length)
     for ( i=0; i < cities.length; i++ ) {
-        var cities = cities[i]
-        liH = $('<li>');
-        liH.text(cities)
-        liH.attr("data-index" , i );
-        
-        console.log('ạdjkasdf')
-        var button= $('button')
-        button.text("find")
-
-        liH.appendChild(button);
-        cityList.appendChild(liH);
-        mainL.append(cityList);
+        var currCity = cities[i]
+        liH = $('<div class="sd">');
+        liH.text(currCity)
+        liH.attr( 'id' , i );    
+        cityList.append(liH);
     }
 }
 
-init();
+cityList.on('click', '.sd', function() {
+    input.val( $(this).text() )
+    console.log($(this).text())
+    getData()
+})
 
-*/
+init();
