@@ -91,6 +91,8 @@ function getData() {
       
         if (data.cod == 404) {
             Stt.text('Request Status: City not found')
+            today.empty();
+            $('#container').empty();
             todayTitle.text(' Try a different city ')
             today.append(todayTitle);
             mainHt.append(today);      
