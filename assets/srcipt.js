@@ -126,13 +126,15 @@ function getData() {
                 iconCode    = data.list[0].weather[0].icon
                 iconUrl     =   'http://openweathermap.org/img/w/'+iconCode+'.png'
                 weatherIcon = $('<img id="icon" src="" alt="weather icon">')
+                weatherIcon.css( "max-width", "40%" )  
+                weatherIcon.css("max-height", "40%" )
                 weatherIcon.attr( 'src' , iconUrl )
                                     
-                todayTitle.text(` ${cityName} ${currentDay}`)
+                todayTitle.text(` ${cityName}  (${currentDay}) `)
                 todayTitle.append(weatherIcon)    
                 today.append(todayTitle);
                 
-                Ul = $('<div id"list">')    
+                Ul = $('<div id="listUv">')    
 
                 var tempK = ((master.temp * 9/5) - 459.67).toFixed(1)
 
@@ -148,6 +150,17 @@ function getData() {
                     li.text(weatherResult[i])
                     Ul.append(li)
                     today.append(Ul)
+                    if (i === 3) {
+                        if (dataUv.value <= 3 ) {
+                            li.addClass('uvGreen')
+                        } else if (dataUv.value > 3 && dataUv.value <= 7 ) {
+                            li.addClass('uvYel')
+                        } else if (dataUv.value > 7 && dataUv.value <= 11) {
+                            li.addClass('uvRed') 
+                        } else {
+                            li.addClass('uvPu')
+                        }
+                    }
                 }
                 
               /*   li= $('<div>')

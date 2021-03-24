@@ -80,3 +80,33 @@ main {
     background-color: white;
     width: 50%;
 }
+
+.uvGreen { 
+    padding: 2px;
+    background-color:rgb(35, 231, 35);
+    width : 16%;
+}
+
+.uvYel {
+    padding: 2px;
+    background-color: yellow;
+    width : 16%;
+
+}
+
+.uvRed {
+    padding: 2px;
+    background-color: rgb(240, 16, 16);
+    color : white;
+    width : 16%;
+
+}
+
+.uvPu {
+    background-color: rgb(192, 16, 192);
+    color : white;
+    width : 16%;
+    padding: 2px;
+
+
+}
