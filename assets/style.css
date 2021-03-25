@@ -1,6 +1,8 @@
 /*        mainL.children('input').val('') */
 
-
+* {
+    transition: 0.5s; 
+}
 
 .text-header {
     text-align: center;
@@ -9,6 +11,7 @@
     margin-bottom: 0px;
     padding: 1%;
 }
+
 
 main {
     display: flex;
@@ -63,11 +66,16 @@ main {
     color: white;
     margin : 5px;
     padding : 0% 1%;
-    border: solid 1px #186ff1;
     border-radius : 6px;
-    background-color: #186ff1;
+    border: solid 1px #186ff1;
+    border-bottom-color: #0b4fb6;
+    background-image: linear-gradient(#267af8, #125fd3);
 }
-
+.each-day:hover {
+    border-left: none;
+    border-top:  none;
+    box-shadow: 5px 5px 3px #d2b3e7;
+}
 #container {
     display: inline-block;
 }
@@ -79,6 +87,11 @@ main {
     margin-bottom: 2px;
     background-color: white;
     width: 50%;
+}
+
+.sd:hover {
+    border : solid 1px white;
+    background-color: rgb(214, 212, 212);
 }
 
 .uvGreen { 
